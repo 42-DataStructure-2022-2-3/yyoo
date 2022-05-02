@@ -18,7 +18,7 @@ int main()
 	getDLElement(pList, 3);
 	//deleteDoublyList(pList);
 	// removeDLElement(pList, 2);
-	// displayDoublyList(pList);
+	 displayDoublyList(pList);
 
 	// printf("+++++++++++++++++++++++++++++++++++\n");
 	// RdisplayDoublyList(pList);
@@ -29,12 +29,9 @@ DoublyList* createDoublyList()
 {
 	DoublyList *pList;
 
-	pList = malloc(sizeof(DoublyList));
+	pList = calloc(1, sizeof(DoublyList));
 	if (!pList)
 		return (NULL);
-	pList->currentElementCount = 0;
-	pList->headerNode.pLLink = NULL;
-	pList->headerNode.pRLink = NULL;
 	return (pList);
 }
 
@@ -55,7 +52,7 @@ int addDLElement(DoublyList* pList, int position, DoublyListNode element)
 	add_node = malloc(sizeof(DoublyListNode));
 	if (!add_node)
 		return (FALSE);
-	add_node->data = element.data;
+	*add_node = element;
 	curr = &pList->headerNode;
 	for (int i = 0; i < position - 1 ; i++)
 		curr = curr->pRLink;
@@ -72,7 +69,7 @@ int removeDLElement(DoublyList* pList, int position)
 {
 	DoublyListNode *curr;
 
-	if (position > pList->currentElementCount)
+	if (position < 0 || position > pList->currentElementCount)
 		return (FALSE);
 	curr = &pList->headerNode;
 	for (int i = 0; i < position ; i++)
@@ -109,7 +106,7 @@ DoublyListNode* getDLElement(DoublyList* pList, int position)
 	DoublyListNode	*curr;
 	int i;
 
-	if (position > pList->currentElementCount)
+	if (position < 0 || position > pList->currentElementCount)
 		return (NULL);
 	curr = &pList->headerNode;
 	for(i = 0; i < position; i++)

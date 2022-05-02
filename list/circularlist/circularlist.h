@@ -4,8 +4,7 @@
 typedef struct CircularListNodeType
 {
 	int data;
-	struct CircularListNodeType* pLLink;
-	struct CircularListNodeType* pRLink;
+	struct CircularListNodeType* pLink;
 } CircularListNode;
 
 typedef struct CircularListType
@@ -22,7 +21,6 @@ void clearCircularList(CircularList* pList);
 int getCircularListLength(CircularList* pList);
 CircularListNode* getDLElement(CircularList* pList, int position);
 void displayCircularList(CircularList* pList);
-void RdisplayCircularList(CircularList* pList);
 
 #endif
 
