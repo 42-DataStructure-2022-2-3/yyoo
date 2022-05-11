@@ -152,7 +152,11 @@ void deleteLinkedDeque(LinkedDeque* pDeque)
 	pDeque = NULL;
 }
 
-int isLinkedDequeFull(LinkedDeque* pDeque);
+int isLinkedDequeFull(LinkedDeque* pDeque)
+{
+	return (FALSE);
+}
+
 int isLinkedDequeEmpty(LinkedDeque* pDeque)
 {
 	if (pDeque->currentElementCount == 0)

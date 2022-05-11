@@ -8,18 +8,22 @@ int main()
 	int i = 0;
 	while (i < 10)
 	{
-		aqn.data = 'a' + i;
+		aqn.data = '0' + i;
 		enqueueAQ(aq, aqn);
 		i++;
 	}
-	for (int j = 0; j < 10; j++)
+	for(int k = 0; k < 10; k++)
 	{
-		printf("+++++++++  %d  ++++++++++++\n", j);
-		displayArrayQueue(aq);
-		dequeueAQ(aq);
+		printf("%c\n", aq->pElement[k].data);
 	}
-	printf("+++++++++  10  ++++++++++++\n");
-	displayArrayQueue(aq);
+	// for (int j = 0; j < 10; j++)
+	// {
+	// 	printf("+++++++++  %d  ++++++++++++\n", j);
+	// 	displayArrayQueue(aq);
+	// 	dequeueAQ(aq);
+	// }
+	// printf("+++++++++  10  ++++++++++++\n");
+	// displayArrayQueue(aq);
 }
 
 ArrayQueue* createArrayQueue(int maxElementCount)
@@ -40,7 +44,7 @@ ArrayQueue* createArrayQueue(int maxElementCount)
 
 int enqueueAQ(ArrayQueue* pQueue, ArrayQueueNode element)
 {
-	if (pQueue->rear == pQueue->maxElementCount - 1)
+	if (!pQueue || pQueue->rear == pQueue->maxElementCount - 1)
 		return (FALSE);
 	pQueue->rear++;
 	pQueue->pElement[pQueue->rear] = element;
@@ -52,7 +56,7 @@ ArrayQueueNode *dequeueAQ(ArrayQueue* pQueue)
 {
 	ArrayQueueNode *de;
 
-	if (isArrayQueueEmpty(pQueue))
+	if (!pQueue || isArrayQueueEmpty(pQueue))
 		return (NULL);
 	de = malloc(sizeof(ArrayQueueNode));
 	pQueue->front++;
@@ -65,11 +69,13 @@ ArrayQueueNode *peekAQ(ArrayQueue* pQueue)
 {
 	ArrayQueueNode *peek;
 
-	if (isArrayQueueEmpty(pQueue))
+	if (!pQueue || isArrayQueueEmpty(pQueue))
 		return (NULL);
 	peek = malloc(sizeof(ArrayQueueNode));
 	*peek = pQueue->pElement[pQueue->front];
-	return (peek);
+	return &(pQueue->pElement[pQueue->front]);
+	// return &(pQueue->pElement[pQueue->front]);
+
 }
 
 void deleteArrayQueue(ArrayQueue* pQueue)
@@ -81,20 +87,22 @@ void deleteArrayQueue(ArrayQueue* pQueue)
 
 int isArrayQueueFull(ArrayQueue* pQueue)
 {
-	if (pQueue->maxElementCount == pQueue->currentElementCount)
+	if (!pQueue || pQueue->maxElementCount == pQueue->currentElementCount)
 		return (TRUE);
 	return (FALSE);
 }
 
 int isArrayQueueEmpty(ArrayQueue* pQueue)
 {
-	if (pQueue->currentElementCount == 0)
+	if (!pQueue || pQueue->currentElementCount == 0)
 		return (TRUE);
 	return (FALSE);
 }
 
 void displayArrayQueue(ArrayQueue* pQueue)
 {
+	if (!pQueue)
+		return ;
 	printf("maxElementCount : %d\n", pQueue->maxElementCount);
 	printf("currentElementCount : %d\n", pQueue->currentElementCount);
 	printf("front : %d\n", pQueue->front);
