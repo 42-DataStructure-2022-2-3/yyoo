@@ -47,7 +47,7 @@ int main()
 	Tree = deleteBinTree(Tree);
 	printf("%p", Tree);
 	// free(Tree);
-	// system("leaks a.out");
+	system("leaks a.out");
 	
 	return 0;
 }
