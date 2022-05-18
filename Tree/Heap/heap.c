@@ -19,9 +19,9 @@ int main()
 
 
 }
-//		          5(1)
-//        4(2)            2(3)
-//    1(4)     3(5)      
+//		          c(1)
+//        r(2)            w(3)
+//    g(4)     d(5)      
 //  temp = 5
 Heap* makeHeap(int maxElementCount)
 {
