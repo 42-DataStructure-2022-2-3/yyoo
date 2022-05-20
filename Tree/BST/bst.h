@@ -17,10 +17,12 @@ typedef struct BSTType
 
 BST* makeBST(BSTNode rootNode);
 BSTNode* createnewNode(BSTNode element);
-BSTNode* getRootNodeBST(BST* pBST);
+BSTNode* getRootNodeBST(BST* BST);
 BSTNode* insertChildNodeBST(BST* BST, BSTNode element);
+BSTNode* searchParentNodeBST(BST* pBST, int key);
 BSTNode* searchNodeBST(BST* BST, int key);
 BST* deleteMaxBST(BST* BST);
+void deleteBSTNode(BST* BST, int key);
 void preorderTraversalBST(BSTNode* rootNode);
 void MaxBSTify(BST* BST, int now);
 void displayBST(BST* BST);
